@@ -1,0 +1,42 @@
+flowchart LR
+    subgraph Input Sources
+        GH[GitHub DOCS]
+        AX[arXiv Papers]
+        US[User Notes]
+    end
+
+    subgraph Processing Layer
+        ZK[Zettelkasten\nProcessor]
+        PP[Pattern\nProcessor]
+        KE[Knowledge\nExtractor]
+    end
+
+    subgraph Storage Layer
+        OB[Obsidian Vault]
+        XML[XML Storage]
+        IDX[Index System]
+    end
+
+    GH --> ZK
+    AX --> ZK
+    US --> ZK
+    
+    ZK --> PP
+    PP --> KE
+    
+    KE --> OB
+    KE --> XML
+    KE --> IDX
+    
+    OB <--> XML
+    XML <--> IDX
+    
+    style GH fill:#ffcccb
+    style AX fill:#ffcccb
+    style US fill:#ffcccb
+    style ZK fill:#90EE90
+    style PP fill:#90EE90
+    style KE fill:#90EE90
+    style OB fill:#87CEEB
+    style XML fill:#87CEEB
+    style IDX fill:#87CEEB 

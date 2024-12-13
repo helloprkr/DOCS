@@ -1,0 +1,40 @@
+graph TB
+    BC[BlueCow Core]
+    
+    subgraph Knowledge Components
+        ZK[Zettelkasten]
+        MF[Memory Framework]
+        KB[Knowledge Base]
+    end
+    
+    subgraph Integration Components
+        OB[Obsidian]
+        GH[GitHub]
+        AX[arXiv]
+    end
+    
+    subgraph Processing Components
+        XML[XML Processor]
+        MD[Markdown Engine]
+        AI[AI Integration]
+    end
+    
+    BC --- ZK & MF & KB
+    ZK --- MF
+    MF --- KB
+    
+    BC ---|Integration| OB & GH & AX
+    OB --- XML & MD
+    
+    BC ---|Processing| AI
+    AI --- XML & MD
+    
+    classDef core fill:#ff9999
+    classDef knowledge fill:#99ff99
+    classDef integration fill:#9999ff
+    classDef processing fill:#ffff99
+    
+    class BC core
+    class ZK,MF,KB knowledge
+    class OB,GH,AX integration
+    class XML,MD,AI processing 

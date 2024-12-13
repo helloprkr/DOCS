@@ -1,0 +1,34 @@
+graph TD
+    subgraph Core Components
+        BC[BlueCow System]
+        ZK[Zettelkasten Framework]
+        OB[Obsidian Integration]
+    end
+
+    subgraph External Systems
+        GH[GitHub DOCS]
+        AX[arXiv.org]
+        GPT[OpenAI GPT]
+    end
+
+    subgraph Knowledge Management
+        MF[Memory Framework]
+        XML[XML Schema]
+        MD[Markdown Processing]
+    end
+
+    BC --> ZK
+    BC --> OB
+    ZK --> MF
+    OB --> XML
+    OB --> MD
+    GH -.-> BC
+    AX -.-> BC
+    GPT -.-> BC
+
+    style BC fill:#b3e0ff
+    style ZK fill:#d1f2eb
+    style OB fill:#d1f2eb
+    style MF fill:#fdebd0
+    style XML fill:#fdebd0
+    style MD fill:#fdebd0 
