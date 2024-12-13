@@ -167,6 +167,7 @@
   },
   "active": "304c73c396969d2a",
   "lastOpenFiles": [
+    "sync.sh",
     "README.md",
     "LICENSE",
     "ADHD/arXiv:2411.13950v1 [cs.SE] 21 Nov 2024.md",
@@ -202,7 +203,6 @@
     "OpenAI-Chat-App/node_modules/openai/src/_vendor/zod-to-json-schema/README.md",
     "OpenAI-Chat-App/node_modules/openai/src/_vendor/partial-json-parser/README.md",
     "OpenAI-Chat-App/node_modules/openai/node_modules/@types/node/README.md",
-    "OpenAI-Chat-App/node_modules/next/dist/compiled/regenerator-runtime/README.md",
     "2025/frontend/public/window.svg",
     "2025/frontend/public/vercel.svg",
     "2025/frontend/public/next.svg",
