@@ -1,0 +1,37 @@
+sequenceDiagram
+    participant U as User
+    participant BC as BlueCow
+    participant ZK as Zettelkasten
+    participant OB as Obsidian
+    participant EX as External Systems
+
+    U->>BC: Input Content
+    activate BC
+    
+    BC->>ZK: Process Input
+    activate ZK
+    ZK-->>BC: Structured Knowledge
+    deactivate ZK
+    
+    BC->>OB: Store Content
+    activate OB
+    OB-->>BC: Storage Confirmation
+    deactivate OB
+    
+    BC->>EX: External Integration
+    activate EX
+    EX-->>BC: Integration Results
+    deactivate EX
+    
+    BC-->>U: Process Complete
+    deactivate BC
+    
+    Note over U,EX: Continuous Learning Loop
+    
+    rect rgb(240, 240, 240)
+        Note right of BC: Knowledge Processing Steps
+        BC->>BC: 1. Parse Input
+        BC->>BC: 2. Extract Patterns
+        BC->>BC: 3. Generate Links
+        BC->>BC: 4. Update Index
+    end 

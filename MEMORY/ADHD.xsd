@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+   A Comprehensive XML Schema for Neurodiversity, Medical Context, 
+   Agile Practices, and Performance Outcomes
+   This schema can serve as a contextual lens for LLM and IDE queries.
+-->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:nd="http://example.org/neurodiversity"
+            xmlns:med="http://example.org/medical"
+            xmlns:ag="http://example.org/agile"
+            xmlns:env="http://example.org/environment"
+            xmlns:org="http://example.org/organization"
+            targetNamespace="http://example.org/neurodiversity"
+            elementFormDefault="qualified"
+            attributeFormDefault="unqualified">
+
+  <!-- ===================
+       Basic Data Types
+  =================== -->
+  <xsd:simpleType name="IdentifierType">
+    <xsd:restriction base="xsd:string"/>
+  </xsd:simpleType>
+  
+  <xsd:simpleType name="RatingType">
+    <xsd:restriction base="xsd:int">
+      <xsd:minInclusive value="0"/>
+      <xsd:maxInclusive value="100"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="EFConstructType">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="InhibitoryControl"/>
+      <xsd:enumeration value="WorkingMemory"/>
+      <xsd:enumeration value="CognitiveFlexibility"/>
+      <xsd:enumeration value="EmotionalRegulation"/>
+      <xsd:enumeration value="DelayAversion"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <!-- ===================
+       Neurodiversity Domain
+  =================== -->
+  <xsd:complexType name="NeurodivergentProfileType">
+    <xsd:sequence>
+      <xsd:element name="Condition" type="nd:NeuroConditionType" maxOccurs="unbounded"/>
+      <xsd:element name="EFAssessment" type="nd:EFAssessmentType" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+    <xsd:attribute name="ProfileID" type="nd:IdentifierType" use="required"/>
+  </xsd:complexType>
+
+  <xsd:complexType name="NeuroConditionType">
+    <xsd:sequence>
+      <xsd:element name="DiagnosisCode" type="xsd:string" 
+                   annotation="e.g. ICD-10 or DSM-5 code for ASD or ADHD"/>
+      <xsd:element name="Comorbidities" minOccurs="0">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="Comorbidity" type="xsd:string" maxOccurs="unbounded"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name="Type" use="required">
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="ASD"/>
+          <xsd:enumeration value="ADHD"/>
+          <xsd:enumeration value="ASD+ADHD"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
+  </xsd:complexType>
+
+  <xsd:complexType name="EFAssessmentType">
+    <xsd:sequence>
+      <xsd:element name="Construct" type="nd:EFConstructType"/>
+      <xsd:element name="Score" type="nd:RatingType"/>
+      <xsd:element name="Instrument" type="xsd:string" minOccurs="0" 
+                   annotation="e.g., IFERA-II"/>
+    </xsd:sequence>
+    <xsd:attribute name="Date" type="xsd:date"/>
+  </xsd:complexType>
+
+  <!-- ===================
+       Medical Domain
+  =================== -->
+  <xsd:complexType name="MedicalInterventionType">
+    <xsd:sequence>
+      <xsd:element name="Medication" type="med:MedicationType" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="Therapy" type="med:TherapyType" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="MedicationType" xmlns:med="http://example.org/medical">
+    <xsd:sequence>
+      <xsd:element name="Name" type="xsd:string"/>
+      <xsd:element name="Dosage" type="xsd:string"/>
+      <xsd:element name="SideEffects" minOccurs="0">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="Effect" type="xsd:string" maxOccurs="unbounded"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="TherapyType">
+    <xsd:sequence>
+      <xsd:element name="Type" type="xsd:string" annotation="e.g. CBT, OccupationalTherapy"/>
+      <xsd:element name="Frequency" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <!-- ===================
+       Environment Domain
+  =================== -->
+  <xsd:complexType name="EnvironmentalFactorsType" xmlns:env="http://example.org/environment">
+    <xsd:sequence>
+      <xsd:element name="Lighting" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="NoiseLevel" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="RemoteWorkOption" type="xsd:boolean" minOccurs="0"/>
+      <xsd:element name="FlexibleHours" type="xsd:boolean" minOccurs="0"/>
+      <xsd:element name="SensoryAccommodations" minOccurs="0">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="Accommodation" type="xsd:string" maxOccurs="unbounded" 
+                         annotation="e.g. noise-canceling headphones"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <!-- ===================
+       Agile Domain
+  =================== -->
+  <xsd:complexType name="AgilePracticesType" xmlns:ag="http://example.org/agile">
+    <xsd:sequence>
+      <xsd:element name="TaskBreakdown" type="xsd:boolean"/>
+      <xsd:element name="TDD" type="xsd:boolean"/>
+      <xsd:element name="PairProgramming" type="xsd:boolean"/>
+      <xsd:element name="DailyStandups" type="xsd:boolean"/>
+      <xsd:element name="Retrospectives" type="xsd:boolean"/>
+      <xsd:element name="CodeReviews" type="xsd:boolean"/>
+      <xsd:element name="DurationOfMeetings" type="xsd:string" minOccurs="0" 
+                   annotation="e.g. short, limited to 15 min"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <!-- ===================
+       Organizational Support
+  =================== -->
+  <xsd:complexType name="OrganizationalSupportType" xmlns:org="http://example.org/organization">
+    <xsd:sequence>
+      <xsd:element name="AwarenessTraining" type="xsd:boolean"/>
+      <xsd:element name="InclusivePolicies" type="xsd:boolean"/>
+      <xsd:element name="LeadershipSupport" type="xsd:boolean"/>
+      <xsd:element name="AffinityGroups" type="xsd:boolean"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <!-- ===================
+       Outcomes & Metrics
+  =================== -->
+  <xsd:complexType name="OutcomesType">
+    <xsd:sequence>
+      <xsd:element name="ProductivityScore" type="nd:RatingType"/>
+      <xsd:element name="CodeQualityScore" type="nd:RatingType"/>
+      <xsd:element name="BurnoutRisk" type="nd:RatingType"/>
+      <xsd:element name="TaskCompletionRate" type="nd:RatingType"/>
+      <xsd:element name="DeveloperSatisfaction" type="nd:RatingType"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <!-- ===================
+       Feedback & Improvement
+  =================== -->
+  <xsd:complexType name="FeedbackLoopType">
+    <xsd:sequence>
+      <xsd:element name="ImprovementSuggestions" maxOccurs="unbounded" minOccurs="0">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="Suggestion" type="xsd:string"/>
+            <xsd:element name="Priority" type="nd:RatingType" minOccurs="0"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="LastReviewDate" type="xsd:date" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <!-- ===================
+       Root Element
+  =================== -->
+  <xsd:element name="NeurodiversityContext">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="NeurodivergentProfile" type="nd:NeurodivergentProfileType"/>
+        <xsd:element name="MedicalInterventions" type="nd:MedicalInterventionType" minOccurs="0"/>
+        <xsd:element name="Environment" type="nd:EnvironmentalFactorsType" minOccurs="0"/>
+        <xsd:element name="AgilePractices" type="nd:AgilePracticesType" minOccurs="0"/>
+        <xsd:element name="OrganizationalSupport" type="nd:OrganizationalSupportType" minOccurs="0"/>
+        <xsd:element name="Outcomes" type="nd:OutcomesType" minOccurs="0"/>
+        <xsd:element name="FeedbackLoop" type="nd:FeedbackLoopType" minOccurs="0"/>
+      </xsd:sequence>
+      <xsd:attribute name="Version" type="xsd:string" default="1.0"/>
+      <xsd:attribute name="LastUpdated" type="xsd:date"/>
+    </xsd:complexType>
+  </xsd:element>
+
+</xsd:schema>

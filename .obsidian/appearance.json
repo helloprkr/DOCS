@@ -1,0 +1,9 @@
+{
+  "accentColor": "#0d1c12",
+  "cssTheme": "Obsidian gruvbox",
+  "theme": "obsidian",
+  "interfaceFontFamily": "Andale Mono,PT Mono",
+  "baseFontSize": 17,
+  "baseFontSizeAction": true,
+  "translucency": true
+}

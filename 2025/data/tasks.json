@@ -1,0 +1,20 @@
+[
+  {
+    "description": "Implement task persistence",
+    "completed_today": true,
+    "completed_later": false,
+    "decided_against": false
+  },
+  {
+    "description": "Add task listing functionality",
+    "completed_today": true,
+    "completed_later": false,
+    "decided_against": false
+  },
+  {
+    "description": "Optimize API usage",
+    "completed_today": true,
+    "completed_later": false,
+    "decided_against": false
+  }
+]

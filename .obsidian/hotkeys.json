@@ -1,0 +1,20 @@
+{
+  "audio-recorder:start": [
+    {
+      "modifiers": [
+        "Ctrl",
+        "Shift"
+      ],
+      "key": "V"
+    }
+  ],
+  "audio-recorder:stop": [
+    {
+      "modifiers": [
+        "Ctrl",
+        "Shift"
+      ],
+      "key": "G"
+    }
+  ]
+}
